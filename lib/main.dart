@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:myntra/functions/homepage_functions.dart';
-import 'package:myntra/modals/discount.dart';
 import 'package:myntra/services.dart/constants.dart';
+import 'package:myntra/widgets/myntra_navigation_bar.dart';
 import 'package:myntra/widgets/category.dart';
-import 'package:myntra/widgets/sale.dart';
+import 'package:myntra/widgets/page_display.dart';
 
 void main() {
   runApp(MyntraApp());
@@ -32,8 +34,11 @@ class Myntra extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<Myntra> {
+  late int selectedIndex;
+
   @override
   void initState() {
+    selectedIndex = 0;
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.white));
     super.initState();
@@ -43,6 +48,14 @@ class _MyHomePageState extends State<Myntra> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Container(),
+      bottomNavigationBar: MyntraNavigationBar(
+        selectedIndex: selectedIndex,
+        onTap: (index) {
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+      ),
       appBar: AppBar(
         systemOverlayStyle: SystemUiOverlayStyle(),
         elevation: 0,
@@ -62,18 +75,14 @@ class _MyHomePageState extends State<Myntra> {
         ),
       ),
       body: ListView(
+        shrinkWrap: true,
         children: [
-          SaleWidget(
-            deadLineTitle: 'SALE ENDS IN',
-            deadLine: DateTime.now(),
-            offer: 'Free Shipping For You Till Midnight.',
-            offerImageURL:
-                'https://www.pngall.com/wp-content/uploads/2016/07/Special-offer-Download-PNG.png',
-            discounts: [
-              Discount('',
-                  '10% instant discount on kotak mahindra bank Credit and debit cards.'),
-              Discount('',
-                  '10% instant discount on ICICI bank Credit and debit cards.'),
+          PageDisplay(
+            urlList: [
+              'https://offerground.com/wp-content/uploads/2021/06/screenshot-www.myntra.com-2021.06.09-11_08_20.jpg',
+              'https://paisebachaoindia.com/wp-content/uploads/2016/06/139.png',
+              'https://paisebachaoindia.com/wp-content/uploads/2016/12/141.png',
+              'https://paisebachaoindia.com/wp-content/uploads/2016/06/314.png',
             ],
           ),
         ],
