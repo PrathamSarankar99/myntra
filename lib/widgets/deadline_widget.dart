@@ -35,9 +35,18 @@ class _DeadLineState extends State<DeadLine> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SaleTimeColumn(),
-                SaleTimeColumn(),
-                SaleTimeColumn(),
+                SaleTimeColumn(
+                  top: '20',
+                  bottom: 'hrs',
+                ),
+                SaleTimeColumn(
+                  top: '14',
+                  bottom: 'mins',
+                ),
+                SaleTimeColumn(
+                  top: '55',
+                  bottom: 'sec',
+                ),
               ],
             ),
           )
@@ -48,14 +57,16 @@ class _DeadLineState extends State<DeadLine> {
 }
 
 class SaleTimeColumn extends StatelessWidget {
-  const SaleTimeColumn({Key? key}) : super(key: key);
-
+  const SaleTimeColumn({Key? key, required this.top, required this.bottom})
+      : super(key: key);
+  final String top;
+  final String bottom;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          "24",
+          top,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 15,
@@ -63,7 +74,7 @@ class SaleTimeColumn extends StatelessWidget {
           ),
         ),
         Text(
-          "hrs",
+          bottom,
           style: TextStyle(
             fontWeight: FontWeight.w300,
             fontSize: 12,

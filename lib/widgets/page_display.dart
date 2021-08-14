@@ -33,17 +33,16 @@ class _PageDisplayState extends State<PageDisplay> {
           if (widget.urlList.isNotEmpty)
             Container(
               height: 250,
-              child: PageView.builder(
-                itemCount: widget.urlList.length,
+              child: PageView(
+                children: widget.urlList
+                    .map((e) => PageDisplayBanner(
+                          imageURl: e,
+                        ))
+                    .toList(),
                 onPageChanged: (index) {
                   setState(() {
                     selectedIndex = index;
                   });
-                },
-                itemBuilder: (context, index) {
-                  return PageDisplayBanner(
-                    imageURl: widget.urlList[index],
-                  );
                 },
               ),
             ),
