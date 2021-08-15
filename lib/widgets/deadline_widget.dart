@@ -17,7 +17,7 @@ class _DeadLineState extends State<DeadLine> {
     return Container(
       height: 75,
       color: Colors.white,
-      margin: EdgeInsets.only(top: 20, bottom: 20),
+      margin: EdgeInsets.only(top: 20),
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [

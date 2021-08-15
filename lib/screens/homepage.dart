@@ -3,9 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:myntra/functions/homepage_functions.dart';
 import 'package:myntra/widgets/deadline_widget.dart';
 import 'package:myntra/widgets/drawer.dart';
+import 'package:myntra/widgets/grid_display.dart';
+import 'package:myntra/widgets/list_display.dart';
 import 'package:myntra/widgets/myntra_navigation_bar.dart';
 import 'package:myntra/widgets/offer_widget.dart';
 import 'package:myntra/widgets/page_display.dart';
+import 'package:myntra/widgets/quote_display.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -59,17 +62,48 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: ListView(
+        padding: EdgeInsets.only(bottom: 20),
         shrinkWrap: true,
         children: [
           DeadLine(),
           Offer(),
           PageDisplay(
+            title: 'Page Display',
             urlList: [
               'https://offerground.com/wp-content/uploads/2021/06/screenshot-www.myntra.com-2021.06.09-11_08_20.jpg',
               'https://paisebachaoindia.com/wp-content/uploads/2016/06/139.png',
               'https://paisebachaoindia.com/wp-content/uploads/2016/12/141.png',
               'https://paisebachaoindia.com/wp-content/uploads/2016/06/314.png',
             ],
+          ),
+          ListDisplay(
+            title: 'List Display',
+            urlList: [
+              'https://offerground.com/wp-content/uploads/2021/06/screenshot-www.myntra.com-2021.06.09-11_08_20.jpg',
+              'https://paisebachaoindia.com/wp-content/uploads/2016/06/139.png',
+              'https://paisebachaoindia.com/wp-content/uploads/2016/12/141.png',
+              'https://paisebachaoindia.com/wp-content/uploads/2016/06/314.png',
+            ],
+          ),
+          GridDisplay(
+            inRowCount: 3,
+            title: 'Grid Display',
+            horizontalPadding: 20,
+            capitalizeTitle: false,
+            urlList: [
+              'https://offerground.com/wp-content/uploads/2021/06/screenshot-www.myntra.com-2021.06.09-11_08_20.jpg',
+              'https://paisebachaoindia.com/wp-content/uploads/2016/06/314.png',
+              'https://paisebachaoindia.com/wp-content/uploads/2016/12/141.png',
+              'https://paisebachaoindia.com/wp-content/uploads/2016/06/139.png',
+              'https://paisebachaoindia.com/wp-content/uploads/2016/12/141.png',
+              'https://offerground.com/wp-content/uploads/2021/06/screenshot-www.myntra.com-2021.06.09-11_08_20.jpg',
+              'https://paisebachaoindia.com/wp-content/uploads/2016/12/141.png',
+              'https://offerground.com/wp-content/uploads/2021/06/screenshot-www.myntra.com-2021.06.09-11_08_20.jpg',
+            ],
+          ),
+          QuoteDisplay(
+            quote: 'In difficult time, fashion is always outrageous.',
+            speaker: 'Elsa Schiaparelli',
           ),
         ],
       ),

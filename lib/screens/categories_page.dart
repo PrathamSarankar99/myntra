@@ -40,52 +40,105 @@ class _CategoriesPageState extends State<CategoriesPage> {
       bottomNavigationBar: MyntraNavigationBar(
         index: 1,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          color: Colors.white,
-          child: ExpansionPanelList(
-            elevation: 0,
-            animationDuration: Duration(
-              milliseconds: 600,
-            ),
-            expandedHeaderPadding: EdgeInsets.zero,
-            expansionCallback: (panelIndex, isExpanded) {
-              setState(() {
-                isExpandedList[panelIndex] = !isExpanded;
-              });
-            },
-            children: categories
-                .map((e) => ExpansionPanel(
-                      backgroundColor: Colors.white,
-                      isExpanded: isExpandedList[categories.indexOf(e)],
-                      headerBuilder: (context, isExpanded) {
-                        return Row(
-                          children: [
-                            Expanded(
-                              flex: 6,
-                              child: ListTile(
-                                title: Text(e.title),
+      body: ListView.builder(
+        shrinkWrap: true,
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              Theme(
+                data: ThemeData(
+                  dividerColor: Colors.white,
+                ),
+                child: ExpansionTile(
+                  iconColor: Colors.black.withOpacity(0.7),
+                  collapsedIconColor: Colors.black.withOpacity(0.7),
+                  tilePadding: EdgeInsets.only(right: 20, left: 20),
+                  backgroundColor: categories[index].backgroundColor,
+                  collapsedBackgroundColor: categories[index].backgroundColor,
+                  children: categories[index]
+                      .subCategories
+                      .map((e) => ExpansionTile(
+                            title: Text(
+                              e,
+                              style: GoogleFonts.roboto(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: Colors.black.withOpacity(0.7),
                               ),
                             ),
-                            Expanded(
-                              flex: 3,
-                              child: Container(
-                                height: 80,
-                                color: Colors.blue,
+                          ))
+                      .toList(),
+                  title: Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              categories[index].title.toUpperCase(),
+                              overflow: TextOverflow.fade,
+                              style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black.withOpacity(0.7),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(
+                                categories[index]
+                                    .subCategories
+                                    .toString()
+                                    .substring(
+                                        1,
+                                        categories[index]
+                                                .subCategories
+                                                .toString()
+                                                .length -
+                                            1),
+                                maxLines: 1,
+                                style: GoogleFonts.roboto(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  color: Colors.black.withOpacity(0.5),
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                           ],
-                        );
-                      },
-                      body: Container(
-                        height: 200,
-                        width: MediaQuery.of(context).size.width,
-                        color: Colors.blue,
+                        ),
                       ),
-                    ))
-                .toList(),
-          ),
-        ),
+                      if (categories[index].imageURL.isEmpty)
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 100,
+                            width: 20,
+                          ),
+                        ),
+                      if (categories[index].imageURL.isNotEmpty)
+                        Expanded(
+                          flex: 4,
+                          child: Container(
+                            color: Colors.blue,
+                            height: 100,
+                            width: 50,
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+              Divider(
+                height: 2,
+                thickness: 2,
+                color: Colors.white,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

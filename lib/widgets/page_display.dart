@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PageDisplay extends StatefulWidget {
   const PageDisplay({
     Key? key,
     this.urlList = const [],
     this.verticalMargin = 15,
+    this.title = '',
+    this.capitalizeTitle = false,
   }) : super(key: key);
   final List<String> urlList;
+  final bool capitalizeTitle;
+  final String title;
   final double verticalMargin;
   @override
   _PageDisplayState createState() => _PageDisplayState();
@@ -25,23 +30,41 @@ class _PageDisplayState extends State<PageDisplay> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      margin: EdgeInsets.only(
-          top: widget.verticalMargin, bottom: widget.verticalMargin),
+      margin: EdgeInsets.only(top: widget.verticalMargin),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          if (widget.title.isNotEmpty)
+            Container(
+              height: 50,
+              alignment: Alignment.bottomLeft,
+              margin: EdgeInsets.only(left: 20),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Text(
+                  widget.capitalizeTitle
+                      ? widget.title.toUpperCase()
+                      : widget.title,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.poppins(
+                    fontSize: 17,
+                    color: Colors.black.withOpacity(0.70),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
           if (widget.urlList.isNotEmpty)
             Container(
               height: 250,
-              child: PageView(
-                children: widget.urlList
-                    .map((e) => PageDisplayBanner(
-                          imageURl: e,
-                        ))
-                    .toList(),
+              child: PageView.builder(
+                itemBuilder: (context, index) {
+                  return PageDisplayBanner(
+                      imageURl: widget.urlList[index % widget.urlList.length]);
+                },
                 onPageChanged: (index) {
                   setState(() {
-                    selectedIndex = index;
+                    selectedIndex = index % widget.urlList.length;
                   });
                 },
               ),

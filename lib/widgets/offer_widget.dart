@@ -8,7 +8,7 @@ class Offer extends StatelessWidget {
     return Container(
         height: 50,
         color: Colors.white,
-        margin: EdgeInsets.only(bottom: 20),
+        margin: EdgeInsets.only(top: 20),
         width: MediaQuery.of(context).size.width,
         alignment: Alignment.center,
         child: Row(
