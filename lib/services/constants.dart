@@ -10,6 +10,13 @@ final List<AppBarIcon> homePageAppBarIcons = [
   AppBarIcon('assets/bag.png', IconType.cart),
 ];
 
+Map<IconType, String> iconMap = {
+  IconType.search: 'assets/search.png',
+  IconType.notification: 'assets/notification.png',
+  IconType.favourite: 'assets/heart.png',
+  IconType.cart: 'assets/bag.png',
+};
+
 final List types = [
   'Hot Deals',
   'Men',

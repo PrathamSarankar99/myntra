@@ -23,7 +23,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: getCallToActions(indexes: [3, 2]),
+        actions: getCallToActions(context, indexes: [3, 2]),
         leading: Container(),
         leadingWidth: 0,
         backgroundColor: Colors.white,

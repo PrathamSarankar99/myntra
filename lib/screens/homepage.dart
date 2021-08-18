@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         brightness: Brightness.light,
-        actions: getCallToActions(),
+        actions: getCallToActions(context),
         bottom: PreferredSize(
           child: Container(
               height: 85.0,
@@ -65,10 +65,12 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.only(bottom: 20),
         shrinkWrap: true,
         children: [
-          DeadLine(),
+          DeadLine(
+            title: 'Deadline',
+            capitalizeTitle: true,
+          ),
           Offer(),
           PageDisplay(
-            title: 'Page Display',
             urlList: [
               'https://offerground.com/wp-content/uploads/2021/06/screenshot-www.myntra.com-2021.06.09-11_08_20.jpg',
               'https://paisebachaoindia.com/wp-content/uploads/2016/06/139.png',
@@ -88,8 +90,9 @@ class _HomePageState extends State<HomePage> {
           GridDisplay(
             inRowCount: 3,
             title: 'Grid Display',
-            horizontalPadding: 20,
-            capitalizeTitle: false,
+            horizontalPadding: 5,
+            capitalizeTitle: true,
+            shape: BoxShape.circle,
             urlList: [
               'https://offerground.com/wp-content/uploads/2021/06/screenshot-www.myntra.com-2021.06.09-11_08_20.jpg',
               'https://paisebachaoindia.com/wp-content/uploads/2016/06/314.png',

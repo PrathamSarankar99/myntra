@@ -24,7 +24,7 @@ class _DeadLineState extends State<DeadLine> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "SALE ENDS IN",
+              widget.title,
               style: GoogleFonts.poppins(
                 fontSize: 13,
               ),

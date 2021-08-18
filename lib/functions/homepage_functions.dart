@@ -1,13 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myntra/modals/IconType.dart';
+import 'package:myntra/screens/search_page.dart';
 import 'package:myntra/services/constants.dart';
 import 'package:myntra/widgets/category.dart';
 
-appBarCallback(IconType iconType) {
+appBarCallback(BuildContext context, IconType iconType) {
+  NavigatorState state = Navigator.of(context);
   switch (iconType) {
     case IconType.search:
-      print("Tap recognized : search");
+      state.push(PageRouteBuilder(
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return child;
+        },
+        pageBuilder: (context, animation, secondaryAnimation) {
+          return SearchPage();
+        },
+      ));
       break;
     case IconType.notification:
       print('Tap recognized : notificaition');
@@ -21,12 +30,13 @@ appBarCallback(IconType iconType) {
   }
 }
 
-List<Widget> getCallToActions({List<int> indexes = const []}) {
+List<Widget> getCallToActions(BuildContext context,
+    {List<int> indexes = const []}) {
   return homePageAppBarIcons.map((e) {
     if (indexes.contains(homePageAppBarIcons.indexOf(e)) || indexes.isEmpty) {
       return IconButton(
         onPressed: () {
-          appBarCallback(e.type);
+          appBarCallback(context, e.type);
         },
         icon: Image.asset(
           e.path,
