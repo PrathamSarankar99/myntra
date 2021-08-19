@@ -8,10 +8,12 @@ class PageDisplay extends StatefulWidget {
     this.verticalMargin = 15,
     this.title = '',
     this.capitalizeTitle = false,
+    this.height = 250,
   }) : super(key: key);
   final List<String> urlList;
   final bool capitalizeTitle;
   final String title;
+  final double height;
   final double verticalMargin;
   @override
   _PageDisplayState createState() => _PageDisplayState();
@@ -56,7 +58,7 @@ class _PageDisplayState extends State<PageDisplay> {
             ),
           if (widget.urlList.isNotEmpty)
             Container(
-              height: 250,
+              height: widget.height,
               child: PageView.builder(
                 itemBuilder: (context, index) {
                   return PageDisplayBanner(
@@ -104,10 +106,10 @@ class PageDisplayBanner extends StatelessWidget {
             image: NetworkImage(
               imageURl,
             ),
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
-        child: TextButton(onPressed: () {}, child: Container()),
+        // child: TextButton(onPressed: () {}, child: Container()),
       ),
     );
   }
