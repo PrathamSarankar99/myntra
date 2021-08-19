@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:myntra/modals/AppBarIcon.dart';
 import 'package:myntra/modals/IconType.dart';
 import 'package:myntra/modals/category.dart';
 
-final List<AppBarIcon> homePageAppBarIcons = [
-  AppBarIcon('assets/search.png', IconType.search),
-  AppBarIcon('assets/notification.png', IconType.notification),
-  AppBarIcon('assets/heart.png', IconType.favourite),
-  AppBarIcon('assets/bag.png', IconType.cart),
-];
+final Map<IconType, String> appBarIcons = {
+  IconType.search: 'assets/search.png',
+  IconType.notification: 'assets/notification.png',
+  IconType.favourite: 'assets/heart.png',
+  IconType.cart: 'assets/bag.png',
+};
 
 Map<IconType, String> iconMap = {
   IconType.search: 'assets/search.png',

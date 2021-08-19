@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:myntra/functions/homepage_functions.dart';
+import 'package:myntra/modals/IconType.dart';
+import 'package:myntra/screens/favourite_page.dart';
+import 'package:myntra/screens/search_page.dart';
+import 'package:myntra/services/constants.dart';
+import 'package:myntra/widgets/appbar_actions.dart';
+import 'package:myntra/widgets/category.dart';
 import 'package:myntra/widgets/deadline_widget.dart';
 import 'package:myntra/widgets/drawer.dart';
 import 'package:myntra/widgets/grid_display.dart';
@@ -49,14 +54,55 @@ class _HomePageState extends State<HomePage> {
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         brightness: Brightness.light,
-        actions: getCallToActions(context),
+        actions: [
+          AppBarAction(
+              type: IconType.search,
+              onTap: () {
+                Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          SearchPage(),
+                    ));
+              }),
+          AppBarAction(
+              type: IconType.notification,
+              onTap: () {
+                // Navigator.push(
+                //     context,
+                //     PageRouteBuilder(
+                //       pageBuilder: (context, animation, secondaryAnimation) =>
+                //           SearchPage(),
+                //     ));
+              }),
+          AppBarAction(
+              type: IconType.favourite,
+              onTap: () {
+                Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          Favourite(),
+                    ));
+              }),
+          AppBarAction(
+              type: IconType.cart,
+              onTap: () {
+                // Navigator.push(
+                //     context,
+                //     PageRouteBuilder(
+                //       pageBuilder: (context, animation, secondaryAnimation) =>
+                //           SearchPage(),
+                //     ));
+              }),
+        ],
         bottom: PreferredSize(
           child: Container(
               height: 85.0,
               child: ListView(
                 padding: EdgeInsets.only(left: 15, top: 5),
                 scrollDirection: Axis.horizontal,
-                children: getTypes(),
+                children: types.map((e) => CategoryWidget(title: e)).toList(),
               )),
           preferredSize: Size.fromHeight(85.0),
         ),

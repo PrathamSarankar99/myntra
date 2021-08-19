@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myntra/functions/homepage_functions.dart';
+import 'package:myntra/modals/IconType.dart';
 import 'package:myntra/services/constants.dart';
+import 'package:myntra/widgets/appbar_actions.dart';
 import 'package:myntra/widgets/myntra_navigation_bar.dart';
 
 class CategoriesPage extends StatefulWidget {
@@ -23,7 +24,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: getCallToActions(context, indexes: [3, 2]),
+        actions: [],
         leading: Container(),
         leadingWidth: 0,
         backgroundColor: Colors.white,

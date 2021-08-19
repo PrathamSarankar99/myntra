@@ -28,6 +28,7 @@ class _SearchPageState extends State<SearchPage> {
         titleSpacing: 0,
         elevation: 0,
         title: TextField(
+            autofocus: true,
             controller: controller,
             onChanged: (value) {
               setState(() {});
@@ -36,6 +37,7 @@ class _SearchPageState extends State<SearchPage> {
               if (controller.text.isEmpty) {
                 return;
               }
+              Navigator.pop(context);
               Navigator.push(
                 context,
                 PageRouteBuilder(
@@ -62,28 +64,37 @@ class _SearchPageState extends State<SearchPage> {
                   fontSize: 15,
                   fontWeight: FontWeight.w300,
                 ))),
-        actions: controller.text.isNotEmpty
-            ? [
-                IconButton(
-                  onPressed: () {
-                    controller.clear();
-                  },
-                  icon: Icon(Icons.clear),
-                ),
-              ]
-            : [
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.camera_alt,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.mic),
-                ),
-              ],
+        actions: [
+          IconButton(
+            onPressed: () {
+              controller.clear();
+              Future.delayed(Duration(milliseconds: 200))
+                  .then((value) => setState(() {}));
+            },
+            icon: Icon(Icons.clear),
+          ),
+        ],
       ),
+      // body: Container(
+      //     padding: EdgeInsets.only(),
+      //     child: GridView.count(
+      //       crossAxisCount: 2,
+      //       mainAxisSpacing: 1.5,
+      //       crossAxisSpacing: 1.5,
+      //       childAspectRatio: 6 / 10,
+      //       children: List.generate(
+      //         result.length,
+      //         (index) => Container(
+      //           color: Colors.white,
+      //           child: ProductCard(
+      //             product: result[index],
+      //             index: index,
+      //             addToFavourite: addToFavourite,
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+      //   ),
     );
   }
 }
